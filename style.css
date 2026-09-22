@@ -1,0 +1,67 @@
+body {
+  min-height: 100vh;
+  background: #f5f5f2;
+  color: #202020;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.converter-wrap {
+  max-width: 760px;
+}
+
+.converter-card {
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+  border-color: #d8d8d3;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #555;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.08);
+}
+
+.swap-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.swap-button:hover {
+  background: #eeeeeb;
+}
+
+.result-box {
+  padding: 22px;
+  border-radius: 14px;
+  background: #f1f1ed;
+  border: 1px solid #e1e1dc;
+}
+
+.result-amount {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.status-success {
+  color: #1b6b38;
+}
+
+.status-error {
+  color: #a32828;
+}
+
+@media (max-width: 767.98px) {
+  .swap-button {
+    margin: 0.25rem 0;
+  }
+}

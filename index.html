@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simple responsive currency converter using exchange-rate data.">
+  <title>Currency Converter</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container py-4 py-md-5">
+    <div class="converter-wrap mx-auto">
+      <header class="text-center mb-4">
+        <p class="small text-uppercase fw-semibold text-secondary mb-2">Currency Converter</p>
+        <h1 class="display-6 fw-bold mb-2">Convert money easily</h1>
+        <p class="text-secondary mb-0">Choose your currencies, enter an amount, and convert.</p>
+      </header>
+
+      <section class="card converter-card border-0 shadow-sm" aria-labelledby="converterTitle">
+        <div class="card-body p-4 p-md-5">
+          <h2 id="converterTitle" class="visually-hidden">Currency conversion form</h2>
+
+          <form id="converterForm" novalidate>
+            <div class="mb-3">
+              <label for="amount" class="form-label fw-semibold">Amount</label>
+              <input id="amount" name="amount" class="form-control form-control-lg" type="number" min="0.01" step="0.01" value="100" inputmode="decimal" required aria-describedby="amountHelp">
+              <div id="amountHelp" class="form-text">Enter an amount greater than zero.</div>
+            </div>
+
+            <div class="row g-3 align-items-end">
+              <div class="col-md-5">
+                <label for="fromCurrency" class="form-label fw-semibold">From</label>
+                <select id="fromCurrency" name="fromCurrency" class="form-select form-select-lg" required>
+                  <option value="USD" selected>USD — US Dollar</option>
+                  <option value="GHS">GHS — Ghanaian Cedi</option>
+                  <option value="GBP">GBP — British Pound</option>
+                  <option value="EUR">EUR — Euro</option>
+                  <option value="CNY">CNY — Chinese Yuan</option>
+                  <option value="JPY">JPY — Japanese Yen</option>
+                  <option value="CAD">CAD — Canadian Dollar</option>
+                  <option value="AUD">AUD — Australian Dollar</option>
+                  <option value="CHF">CHF — Swiss Franc</option>
+                  <option value="NGN">NGN — Nigerian Naira</option>
+                  <option value="ZAR">ZAR — South African Rand</option>
+                  <option value="KES">KES — Kenyan Shilling</option>
+                  <option value="AED">AED — UAE Dirham</option>
+                  <option value="SAR">SAR — Saudi Riyal</option>
+                  <option value="INR">INR — Indian Rupee</option>
+                  <option value="SGD">SGD — Singapore Dollar</option>
+                  <option value="HKD">HKD — Hong Kong Dollar</option>
+                  <option value="NZD">NZD — New Zealand Dollar</option>
+                  <option value="SEK">SEK — Swedish Krona</option>
+                  <option value="NOK">NOK — Norwegian Krone</option>
+                  <option value="DKK">DKK — Danish Krone</option>
+                  <option value="BRL">BRL — Brazilian Real</option>
+                  <option value="MXN">MXN — Mexican Peso</option>
+                  <option value="KRW">KRW — South Korean Won</option>
+                </select>
+              </div>
+
+              <div class="col-md-2 d-flex justify-content-center">
+                <button type="button" id="swapButton" class="btn btn-light border swap-button" aria-label="Swap currencies" title="Swap currencies">⇄</button>
+              </div>
+
+              <div class="col-md-5">
+                <label for="toCurrency" class="form-label fw-semibold">To</label>
+                <select id="toCurrency" name="toCurrency" class="form-select form-select-lg" required>
+                  <option value="USD">USD — US Dollar</option>
+                  <option value="GHS" selected>GHS — Ghanaian Cedi</option>
+                  <option value="GBP">GBP — British Pound</option>
+                  <option value="EUR">EUR — Euro</option>
+                  <option value="CNY">CNY — Chinese Yuan</option>
+                  <option value="JPY">JPY — Japanese Yen</option>
+                  <option value="CAD">CAD — Canadian Dollar</option>
+                  <option value="AUD">AUD — Australian Dollar</option>
+                  <option value="CHF">CHF — Swiss Franc</option>
+                  <option value="NGN">NGN — Nigerian Naira</option>
+                  <option value="ZAR">ZAR — South African Rand</option>
+                  <option value="KES">KES — Kenyan Shilling</option>
+                  <option value="AED">AED — UAE Dirham</option>
+                  <option value="SAR">SAR — Saudi Riyal</option>
+                  <option value="INR">INR — Indian Rupee</option>
+                  <option value="SGD">SGD — Singapore Dollar</option>
+                  <option value="HKD">HKD — Hong Kong Dollar</option>
+                  <option value="NZD">NZD — New Zealand Dollar</option>
+                  <option value="SEK">SEK — Swedish Krona</option>
+                  <option value="NOK">NOK — Norwegian Krone</option>
+                  <option value="DKK">DKK — Danish Krone</option>
+                  <option value="BRL">BRL — Brazilian Real</option>
+                  <option value="MXN">MXN — Mexican Peso</option>
+                  <option value="KRW">KRW — South Korean Won</option>
+                </select>
+              </div>
+            </div>
+
+            <button id="convertButton" class="btn btn-dark btn-lg w-100 mt-4" type="submit">
+              <span id="buttonText">Convert</span>
+            </button>
+
+            <div id="statusMessage" class="mt-3" role="status" aria-live="polite"></div>
+          </form>
+
+          <div id="resultPanel" class="result-box mt-4" aria-live="polite">
+            <p class="small text-uppercase fw-semibold text-secondary mb-1">You get</p>
+            <p id="resultAmount" class="result-amount mb-1">—</p>
+            <p id="resultRate" class="text-secondary mb-0">Enter an amount and select your currencies.</p>
+          </div>
+        </div>
+      </section>
+
+      <p class="text-center text-secondary small mt-3 mb-0">Exchange rates are supplied by a public exchange-rate service.</p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
