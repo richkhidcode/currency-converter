@@ -1,67 +1,587 @@
+/*
+  Currency Converter - Application Styles
+
+  Reference:
+  MDN Web Docs – CSS
+  https://developer.mozilla.org/en-US/docs/Web/CSS
+
+  Reference:
+  MDN Web Docs – Responsive design
+  https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design
+
+  The references were used as guidance for responsive CSS,
+  selectors, focus states and accessible styling.
+*/
+
+
+/* =========================================================
+   1. BASE / MOBILE-FIRST STYLES
+   ========================================================= */
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --background: #f4f7fb;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --text: #172033;
+  --text-muted: #64748b;
+  --border: #dbe2ea;
+  --success: #15803d;
+  --danger: #dc2626;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --radius: 18px;
+  --transition: 0.2s ease;
+}
+
+
+/* Dark mode variables */
+
+body.dark {
+  --background: #0f172a;
+  --surface: #1e293b;
+  --surface-soft: #172033;
+  --text: #f1f5f9;
+  --text-muted: #cbd5e1;
+  --border: #334155;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Basic HTML elements */
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  min-height: 100vh;
-  background: #f5f5f2;
-  color: #202020;
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-width: 320px;
+  background: var(--background);
+  color: var(--text);
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+  line-height: 1.6;
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+}
+
+
+/* Attribute selector example */
+
+input[required],
+select[required] {
+  border-left: 3px solid var(--primary);
+}
+
+
+/* =========================================================
+   2. HEADER
+   ========================================================= */
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition);
+}
+
+.top-bar {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.brand:hover {
+  color: var(--primary);
+}
+
+.brand:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+
+/* =========================================================
+   3. PAGE / LAYOUT
+   ========================================================= */
+
+.page {
+  min-height: calc(100vh - 145px);
+  padding: 2.5rem 0 3rem;
 }
 
 .converter-wrap {
-  max-width: 760px;
+  max-width: 900px;
 }
 
+
+/* =========================================================
+   4. INTRODUCTION
+   ========================================================= */
+
+.intro-section {
+  max-width: 680px;
+  margin: 0 auto 1.75rem;
+  text-align: center;
+}
+
+.intro-section h1 {
+  margin-bottom: 0.65rem;
+  color: var(--text);
+  font-size: clamp(2rem, 8vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.intro-section p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+
+/* =========================================================
+   5. CONVERTER CARD
+   ========================================================= */
+
 .converter-card {
-  border-radius: 18px;
-  background: #ffffff;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+
+/* Fieldset */
+
+.converter-card fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+
+/* =========================================================
+   6. FORM CONTROLS
+   ========================================================= */
+
+.form-label {
+  color: var(--text);
 }
 
 .form-control,
 .form-select {
-  border-radius: 10px;
-  border-color: #d8d8d3;
+  min-height: 52px;
+  color: var(--text);
+  background-color: var(--surface);
+  border-color: var(--border);
+  border-radius: 12px;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background-color var(--transition),
+    color var(--transition);
 }
+
+
+/* ID selector */
+
+#amount {
+  font-weight: 600;
+}
+
+
+/* Pseudo-class */
+
+.form-control:hover,
+.form-select:hover {
+  border-color: #94a3b8;
+}
+
+
+/* Focus state */
 
 .form-control:focus,
 .form-select:focus {
-  border-color: #555;
-  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.08);
+  color: var(--text);
+  background-color: var(--surface);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
 }
 
+
+/* Placeholder */
+
+.form-control::placeholder {
+  color: var(--text-muted);
+}
+
+
+/* Help text */
+
+.form-text {
+  color: var(--text-muted);
+}
+
+
+/* =========================================================
+   7. BUTTONS
+   ========================================================= */
+
+.convert-button {
+  min-height: 54px;
+  padding: 0.75rem 1.25rem;
+  color: #ffffff;
+  background: var(--primary);
+  border: 0;
+  border-radius: 12px;
+  font-weight: 700;
+  transition:
+    background-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+
+/* Pseudo-class selectors */
+
+.convert-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
+}
+
+.convert-button:active {
+  transform: translateY(0);
+}
+
+.convert-button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 3px;
+}
+
+.convert-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+  transform: none;
+}
+
+
+/* Swap button */
+
 .swap-button {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 50%;
-  font-size: 1.35rem;
-  line-height: 1;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
 }
 
 .swap-button:hover {
-  background: #eeeeeb;
+  color: #ffffff;
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: rotate(180deg);
 }
 
+.swap-button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 3px;
+}
+
+
+/* Theme button */
+
+.theme-button {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.05rem;
+  transition:
+    background-color var(--transition),
+    transform var(--transition),
+    border-color var(--transition);
+}
+
+.theme-button:hover {
+  transform: scale(1.05);
+}
+
+.theme-button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   8. STATUS MESSAGE
+   ========================================================= */
+
+#statusMessage {
+  min-height: 24px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+#statusMessage.success {
+  color: var(--success);
+  font-weight: 600;
+}
+
+#statusMessage.error {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   9. RESULT PANEL
+   ========================================================= */
+
 .result-box {
-  padding: 22px;
-  border-radius: 14px;
-  background: #f1f1ed;
-  border: 1px solid #e1e1dc;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  text-align: center;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition);
+}
+
+.result-label {
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .result-amount {
-  font-size: clamp(2rem, 6vw, 3rem);
+  display: block;
+  color: var(--text);
+  font-size: clamp(1.8rem, 7vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.result-rate {
+  margin: 0.5rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   10. SUPPORTING INFORMATION
+   ========================================================= */
+
+.supporting-information {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.supporting-information h2 {
+  margin-bottom: 0.75rem;
+  color: var(--text);
+  font-size: 1.1rem;
   font-weight: 700;
-  line-height: 1.1;
-  overflow-wrap: anywhere;
 }
 
-.status-success {
-  color: #1b6b38;
+.supporting-information ul {
+  margin: 0;
+  padding-left: 1.25rem;
 }
 
-.status-error {
-  color: #a32828;
+.supporting-information li {
+  margin-bottom: 0.4rem;
+  color: var(--text-muted);
 }
 
-@media (max-width: 767.98px) {
-  .swap-button {
-    margin: 0.25rem 0;
+.supporting-information li:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   11. LINKS
+   ========================================================= */
+
+.footer-note {
+  margin: 1.5rem auto 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.footer-note a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.footer-note a:hover {
+  color: var(--primary-dark);
+}
+
+.footer-note a:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.3);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   12. FOOTER
+   ========================================================= */
+
+.site-footer {
+  padding: 1.5rem 0;
+  color: var(--text-muted);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0.2rem 0;
+  font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   13. TABLET
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+  .page {
+    padding-top: 4rem;
   }
+
+  .converter-card {
+    padding: 2rem;
+  }
+
+  .intro-section {
+    margin-bottom: 2.25rem;
+  }
+
+}
+
+
+/* =========================================================
+   14. DESKTOP
+   ========================================================= */
+
+@media (min-width: 992px) {
+
+  .page {
+    padding-top: 5rem;
+  }
+
+  .converter-card {
+    padding: 2.25rem;
+  }
+
+  .supporting-information {
+    padding: 1.5rem;
+  }
+
+}
+
+
+/* =========================================================
+   15. REDUCED MOTION
+   ========================================================= */
+
+/*
+  Accessibility:
+  Respect users who prefer reduced motion.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+}
+
+
+/* =========================================================
+   16. PRINT
+   ========================================================= */
+
+@media print {
+
+  .theme-button,
+  .swap-button,
+  .convert-button {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .converter-card,
+  .supporting-information {
+    box-shadow: none;
+  }
+
 }
